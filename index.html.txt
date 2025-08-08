@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>SkillUp App</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<h1>🌟 Welcome to SkillUp</h1>
+<button onclick="showSkills()">📚 Learn Skills</button>
+<button onclick="showJobs()">💼 Find Jobs</button>
+
+<div id="content"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
