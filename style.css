@@ -102,3 +102,41 @@ input[type="text"], input[type="number"] {
 form {
   margin-bottom: 1rem;
 }
+/* Video Learning section styles */
+
+#resources {
+  max-width: 900px;
+  margin: 2rem auto;
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+}
+
+.video-item {
+  margin-bottom: 2rem;
+}
+
+.video-item h3 {
+  color: #4a90e2;
+  margin-bottom: 0.5rem;
+}
+
+.video-item iframe {
+  width: 100%;
+  max-width: 560px;
+  height: 315px;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.video-item a {
+  color: #4a90e2;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.video-item a:hover {
+  text-decoration: underline;
+}
+
