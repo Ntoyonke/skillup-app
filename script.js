@@ -1,23 +1,36 @@
-function showSkills() {
-const skills = `
-<h2>Learn These Skills</h2>
-<ul>
-<li><strong>🍞 Baking:</strong> Learn to bake bread <a href="https://www.youtube.com/watch?v=8jZ9Pq3YpO0" target="_blank">Watch</a></li>
-<li><strong>👕 Sewing:</strong> Make a basic T-shirt <a href="https://www.youtube.com/watch?v=FUZ4YAJU3kQ" target="_blank">Watch</a></li>
-<li><strong>💻 Coding:</strong> Create your first webpage <a href="https://www.youtube.com/watch?v=UB1O30fR-EE" target="_blank">Watch</a></li>
-</ul>
-`;
-document.getElementById("content").innerHTML = skills;
-}
+// script.js
 
-function showJobs() {
-const jobs = `
-<h2>Find Local Jobs</h2>
-<ul>
-<li><strong>🌿 Farm Helper</strong> – KwaMashu – Call: 082 555 1234</li>
-<li><strong>💇 Hair Braider</strong> – Umlazi – Call: 083 987 4567</li>
-<li><strong>🧁 Bakery Assistant</strong> – Soweto – Call: 081 345 6789</li>
-</ul>
-`;
-document.getElementById("content").innerHTML = jobs;
-}
+const skillForm = document.getElementById('skill-form');
+const skillList = document.getElementById('skill-list');
+
+skillForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('skill-name').value.trim();
+  let level = parseInt(document.getElementById('skill-level').value);
+
+  if (!name || isNaN(level) || level < 0 || level > 100) {
+    alert('Please enter a valid skill name and level (0-100).');
+    return;
+  }
+
+  const li = document.createElement('li');
+
+  const skillName = document.createElement('span');
+  skillName.textContent = name;
+
+  const progressContainer = document.createElement('div');
+  progressContainer.className = 'progress-container';
+
+  const progressBar = document.createElement('div');
+  progressBar.className = 'skill-progress';
+  progressBar.style.width = level + '%';
+
+  progressContainer.appendChild(progressBar);
+  li.appendChild(skillName);
+  li.appendChild(progressContainer);
+
+  skillList.appendChild(li);
+
+  skillForm.reset();
+});
