@@ -1,26 +1,104 @@
+/* style.css */
+
 body {
-font-family: Arial, sans-serif;
-background-color: #f5f5f5;
-padding: 30px;
-text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 0; padding: 0;
+  scroll-behavior: smooth;
+  background: #f0f2f5;
+  color: #333;
 }
-
+header {
+  background: #4a90e2;
+  color: white;
+  padding: 1rem 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+nav a {
+  color: white;
+  margin-left: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+}
+nav a:hover {
+  text-decoration: underline;
+}
+section {
+  padding: 4rem 2rem;
+  max-width: 900px;
+  margin: auto;
+  background: white;
+  margin-top: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+}
+h1, h2 {
+  color: #4a90e2;
+}
+footer {
+  background: #333;
+  color: white;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: 3rem;
+}
+footer a {
+  color: white;
+  margin: 0 0.5rem;
+  text-decoration: none;
+}
+footer a:hover {
+  text-decoration: underline;
+}
+/* Skill tracker styles */
+.skill-list {
+  list-style: none;
+  padding: 0;
+}
+.skill-list li {
+  background: #e1eaff;
+  margin: 0.5rem 0;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.skill-progress {
+  background: #4a90e2;
+  height: 10px;
+  border-radius: 4px;
+  transition: width 0.5s;
+}
+.progress-container {
+  background: #d1d9f5;
+  border-radius: 4px;
+  width: 60%;
+  margin-left: 1rem;
+  height: 10px;
+}
 button {
-margin: 10px;
-padding: 15px 25px;
-font-size: 16px;
-background-color: #4CAF50;
-color: white;
-border: none;
-border-radius: 8px;
-cursor: pointer;
+  background: #4a90e2;
+  color: white;
+  border: none;
+  padding: 0.4rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
 }
-
 button:hover {
-background-color: #45a049;
+  background: #357ABD;
 }
-
-#content {
-margin-top: 30px;
-text-align: left;
+input[type="text"], input[type="number"] {
+  padding: 0.4rem;
+  margin-right: 0.5rem;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 150px;
+}
+form {
+  margin-bottom: 1rem;
 }
