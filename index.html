@@ -1,18 +1,213 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>SkillUp App</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SkillUp App</title>
+  <style>
+    /* Basic styles */
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      scroll-behavior: smooth;
+      background: #f0f2f5;
+      color: #333;
+    }
+    header {
+      background: #4a90e2;
+      color: white;
+      padding: 1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav a {
+      color: white;
+      margin-left: 1rem;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      padding: 4rem 2rem;
+      max-width: 900px;
+      margin: auto;
+      background: white;
+      margin-top: 2rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
+    }
+    h1, h2 {
+      color: #4a90e2;
+    }
+    footer {
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 1rem 0;
+      margin-top: 3rem;
+    }
+    footer a {
+      color: white;
+      margin: 0 0.5rem;
+      text-decoration: none;
+    }
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    /* Skill tracker styles */
+    .skill-list {
+      list-style: none;
+      padding: 0;
+    }
+    .skill-list li {
+      background: #e1eaff;
+      margin: 0.5rem 0;
+      padding: 0.5rem 1rem;
+      border-radius: 4px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .skill-progress {
+      background: #4a90e2;
+      height: 10px;
+      border-radius: 4px;
+      transition: width 0.5s;
+    }
+    .progress-container {
+      background: #d1d9f5;
+      border-radius: 4px;
+      width: 60%;
+      margin-left: 1rem;
+      height: 10px;
+    }
+    button {
+      background: #4a90e2;
+      color: white;
+      border: none;
+      padding: 0.4rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #357ABD;
+    }
+    input[type="text"], input[type="number"] {
+      padding: 0.4rem;
+      margin-right: 0.5rem;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      width: 150px;
+    }
+    form {
+      margin-bottom: 1rem;
+    }
+  </style>
 </head>
 <body>
-<h1>🌟 Welcome to SkillUp</h1>
-<button onclick="showSkills()">📚 Learn Skills</button>
-<button onclick="showJobs()">💼 Find Jobs</button>
 
-<div id="content"></div>
+<header>
+  <div><strong>SkillUp</strong></div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-<script src="script.js"></script>
+<section id="home">
+  <h1>Welcome to SkillUp</h1>
+  <p>Your personal skill tracking and growth app! Keep track of your skills, set goals, and watch yourself improve over time.</p>
+</section>
+
+<section id="about">
+  <h2>About SkillUp</h2>
+  <p>SkillUp helps learners and professionals organize their skills, monitor progress, and access learning resources all in one place.</p>
+  <ul>
+    <li>Track your skill levels easily</li>
+    <li>Set goals and deadlines</li>
+    <li>Access recommended resources</li>
+    <li>Stay motivated and grow continuously</li>
+  </ul>
+</section>
+
+<section id="skills">
+  <h2>Track Your Skills</h2>
+  <form id="skill-form">
+    <input type="text" id="skill-name" placeholder="Skill name" required />
+    <input type="number" id="skill-level" placeholder="Level 0-100" min="0" max="100" required />
+    <button type="submit">Add Skill</button>
+  </form>
+  <ul id="skill-list" class="skill-list"></ul>
+</section>
+
+<section id="contact">
+  <h2>Contact Us</h2>
+  <p>Have questions or want to get involved? Reach out!</p>
+  <p>Email: <a href="mailto:info@skillupapp.com">info@skillupapp.com</a></p>
+</section>
+
+<footer>
+  <p>Follow us on 
+    <a href="https://facebook.com/yourpage" target="_blank" rel="noopener noreferrer">Facebook</a> | 
+    <a href="https://twitter.com/yourprofile" target="_blank" rel="noopener noreferrer">Twitter</a> | 
+    <a href="https://instagram.com/yourprofile" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </p>
+  <p>&copy; 2025 SkillUp App</p>
+</footer>
+
+<script>
+  // Skill tracking script
+  const skillForm = document.getElementById('skill-form');
+  const skillList = document.getElementById('skill-list');
+
+  skillForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const name = document.getElementById('skill-name').value.trim();
+    let level = parseInt(document.getElementById('skill-level').value);
+
+    if (!name || isNaN(level) || level < 0 || level > 100) {
+      alert('Please enter a valid skill name and level (0-100).');
+      return;
+    }
+
+    // Create list item
+    const li = document.createElement('li');
+
+    // Skill name
+    const skillName = document.createElement('span');
+    skillName.textContent = name;
+
+    // Progress bar container
+    const progressContainer = document.createElement('div');
+    progressContainer.className = 'progress-container';
+
+    // Progress bar
+    const progressBar = document.createElement('div');
+    progressBar.className = 'skill-progress';
+    progressBar.style.width = level + '%';
+
+    progressContainer.appendChild(progressBar);
+
+    // Append name and progress bar to li
+    li.appendChild(skillName);
+    li.appendChild(progressContainer);
+
+    skillList.appendChild(li);
+
+    // Clear inputs
+    skillForm.reset();
+  });
+</script>
+
 </body>
-
 </html>
-
